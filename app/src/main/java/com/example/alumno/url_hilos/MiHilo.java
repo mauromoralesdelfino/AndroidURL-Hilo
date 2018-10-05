@@ -31,7 +31,10 @@ public class MiHilo extends Thread {
             Message m = new Message();
             m.arg1= 2;
             //m.obj = ej.ObtenerString();
-            m.obj = ej.ObtenerImagen(this.url);
+           // m.obj = ej.ObtenerImagen(this.url);
+           // m.obj = ej.ObtenerString2(this.url);
+           // m.obj = ParseXmlPersona.Lista(ej.ObtenerString2(this.url));
+            m.obj =  ParseXmlPersona.PersonasJson(ej.ObtenerString2(this.url));
             //byte[] bytes = (byte[]) m.obj;
             /*Bitmap bytmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);*/
 

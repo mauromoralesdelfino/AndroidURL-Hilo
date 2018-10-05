@@ -12,7 +12,7 @@ import java.io.*;
 
 
 
-public class EjemploConexion {
+public class EjemploConexion implements Runnable{
     public EjemploConexion() {
     }
 
@@ -92,5 +92,47 @@ public class EjemploConexion {
         }
 
         return null;
+    }
+
+
+    public String ObtenerString2(URL url)
+    {
+        String s =" ";
+
+        try
+        {
+            HttpURLConnection conection =(HttpURLConnection) url.openConnection();
+            conection.setRequestMethod("GET");
+            conection.connect();
+            int response = conection.getResponseCode();
+            if(response == 200)
+            {
+                InputStream is = conection.getInputStream();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+                int length = 0;
+                while ((length = is.read(buffer)) != -1) {
+                    baos.write(buffer, 0, length);
+                }
+                is.close();
+                return new String(baos.toByteArray());
+            }
+
+
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+
+        }
+
+        return s;
+    }
+
+
+
+    @Override
+    public void run() {
+
     }
 }
